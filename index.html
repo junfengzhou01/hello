@@ -1,136 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Bouncing Ball Animation with Processing.js</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
-  </head>
-  <body>
-    <canvas id="mycanvas"></canvas>
-    <script type="application/processing" data-processing-target="mycanvas">
-      float x = 50;
-      float y = 50;
-      float xspeed = 2.5;
-      float yspeed = 2;
-      float radius = 30;
-      void setup() {
-        size(400, 300);
-        smooth();<!DOCTYPE html>
-<html>
 <head>
-  <meta charset="UTF-8">
-  <title>hello world</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
+<meta charset="UTF-8">
+<title>hello world</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
 </head>
 <body>
-  <canvas id="mycanvas"></canvas>
-  <script type="application/processing" data-processing-target="mycanvas">
-    float x = 50;
-    float y = 50;
-    float xspeed = 2.5;
-    float yspeed = 2;
-    float radius = 30;
-    void setup() {
-      size(400, 300);
-      smooth();<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>hello world</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
-</head>
-<body>
-  <canvas id="mycanvas"></canvas>
-  <script type="application/processing" data-processing-target="mycanvas">
-    float x = 50;
-    float y = 50;
-    float xspeed = 2.5;
-    float yspeed = 2;
-    float radius = 30;
-    void setup() {
-      size(400, 300);
-      smooth();<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>hello world</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
-</head>
-<body>
-  <canvas id="mycanvas"></canvas>
-  <script type="application/processing" data-processing-target="mycanvas">
-    float x = 50;
-    float y = 50;
-    float xspeed = 2.5;
-    float yspeed = 2;
-    float radius = 30;
-    void setup() {
-      size(400, 300);
-      smooth();
-    }
-    void draw() {
-      background(255);
-      fill(0, 150, 255);
-      ellipse(x, y, radius*2, radius*2);
-      x += xspeed;
-      y += yspeed;
-      if (x > width-radius || x < radius) {
-        xspeed *= -1;
-      }
-      if (y > height-radius || y < radius) {
-        yspeed *= -1;
-      }
-    }
-  </script>
+<canvas id="mycanvas"></canvas>
+<script type="application/processing" data-processing-target="mycanvas">
+float x = 50;
+float y = 50;
+float xspeed = 2.5;
+float yspeed = 2;
+float radius = 30;
+void setup() {
+  size(400, 300);
+  smooth();
+}
+void draw() {
+  background(255);
+  fill(0, 150, 255);
+  ellipse(x, y, radius*2, radius*2);
+  x += xspeed;
+  y += yspeed;
+  if (x > width-radius || x < radius) {
+    xspeed *= -1;
+  }
+  if (y > height-radius || y < radius) {
+    yspeed *= -1;
+  }
+}
+</script>
 </body>
-</html>
-    }
-    void draw() {
-      background(255);
-      fill(0, 150, 255);
-      ellipse(x, y, radius*2, radius*2);
-      x += xspeed;
-      y += yspeed;
-      if (x > width-radius || x < radius) {
-        xspeed *= -1;
-      }
-      if (y > height-radius || y < radius) {
-        yspeed *= -1;
-      }
-    }
-  </script>
-</body>
-</html>
-    }
-    void draw() {
-      background(255);
-      fill(0, 150, 255);
-      ellipse(x, y, radius*2, radius*2);
-      x += xspeed;
-      y += yspeed;
-      if (x > width-radius || x < radius) {
-        xspeed *= -1;
-      }
-      if (y > height-radius || y < radius) {
-        yspeed *= -1;
-      }
-    }
-  </script>
-</body>
-</html>
-      }
-      void draw() {
-        background(240);
-        ellipse(x, y, radius*2, radius*2);
-        x += xspeed;
-        y += yspeed;
-        if (x > width-radius || x < radius) {
-          xspeed *= -1;
-        }
-        if (y > height-radius || y < radius) {
-          yspeed *= -1;
-        }
-      }
-    </script>
-  </body>
 </html>
