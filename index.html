@@ -1,47 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>10 balls</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
+  <meta charset="UTF-8">
+  <title>hello world</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
 </head>
 <body>
-<canvas id="mycanvas"></canvas>
-<script type="application/processing" data-processing-target="mycanvas">
-int numBalls = 10;
-float[] x = new float[numBalls];
-float[] y = new float[numBalls];
-float[] xspeed = new float[numBalls];
-float[] yspeed = new float[numBalls];
-float[] radius = new float[numBalls];
+  <canvas id="mycanvas"></canvas>
+  <script type="application/processing" data-processing-target="mycanvas">
+    float x = 200;
+    float y = 150;
+    float xspeed = 3;
+    float yspeed = 2;
+    float radius = 30;
 
-void setup() {
-  size(400, 300);
-  smooth();
-  for (int i = 0; i < numBalls; i++) {
-    x[i] = random(30, width-30);
-    y[i] = random(30, height-30);
-    xspeed[i] = random(1.5, 3.5) * (random(1) > 0.5 ? 1 : -1);
-    yspeed[i] = random(1.5, 3.5) * (random(1) > 0.5 ? 1 : -1);
-    radius[i] = random(15, 30);
-  }
-}
+    void setup() {
+      size(400, 300);
+      smooth();
+    }
 
-void draw() {
-  background(255);
-  for (int i = 0; i < numBalls; i++) {
-    fill(0, 150, 255, 180);
-    ellipse(x[i], y[i], radius[i]*2, radius[i]*2);
-    x[i] += xspeed[i];
-    y[i] += yspeed[i];
-    if (x[i] > width-radius[i] || x[i] < radius[i]) {
-      xspeed[i] *= -1;
+    void draw() {
+      background(255);
+      fill(0, 150, 255, 180);
+      ellipse(x, y, radius*2, radius*2);
+      x += xspeed;
+      y += yspeed;
+      if (x > width - radius || x < radius) {
+        xspeed *= -1;
+      }
+      if (y > height - radius || y < radius) {
+        yspeed *= -1;
+      }
     }
-    if (y[i] > height-radius[i] || y[i] < radius[i]) {
-      yspeed[i] *= -1;
-    }
-  }
-}
-</script>
+  </script>
 </body>
 </html>
