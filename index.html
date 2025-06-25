@@ -2,8 +2,25 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>2 balls</title>
+  <title>cool balls</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
+  <style>
+    body {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #mycanvas {
+      display: block;
+      border: 6px solid #39ff14;
+      box-shadow: 0 0 30px #39ff14, 0 0 60px #00fff7;
+      border-radius: 20px;
+      background: #222;
+    }
+  </style>
 </head>
 <body>
   <canvas id="mycanvas"></canvas>
@@ -15,7 +32,7 @@
       smooth();
     }
     void draw() {
-      background(255);
+      background(34,34,34);
       fill(0, 150, 255, 180);
       ellipse(x1, y1, radius1*2, radius1*2);
       fill(255, 100, 100, 180);
