@@ -2,17 +2,14 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>hello world</title>
+  <title>2 balls</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
 </head>
 <body>
   <canvas id="mycanvas"></canvas>
   <script type="application/processing" data-processing-target="mycanvas">
-    float x = 200;
-    float y = 150;
-    float xspeed = 3;
-    float yspeed = 2;
-    float radius = 30;
+    float x1 = 100, y1 = 100, xspeed1 = 3, yspeed1 = 2, radius1 = 30;
+    float x2 = 300, y2 = 200, xspeed2 = -2, yspeed2 = 3, radius2 = 30;
     void setup() {
       size(400, 300);
       smooth();
@@ -20,15 +17,17 @@
     void draw() {
       background(255);
       fill(0, 150, 255, 180);
-      ellipse(x, y, radius*2, radius*2);
-      x += xspeed;
-      y += yspeed;
-      if (x > width - radius || x < radius) {
-        xspeed *= -1;
-      }
-      if (y > height - radius || y < radius) {
-        yspeed *= -1;
-      }
+      ellipse(x1, y1, radius1*2, radius1*2);
+      fill(255, 100, 100, 180);
+      ellipse(x2, y2, radius2*2, radius2*2);
+      x1 += xspeed1;
+      y1 += yspeed1;
+      x2 += xspeed2;
+      y2 += yspeed2;
+      if (x1 > width - radius1 || x1 < radius1) xspeed1 *= -1;
+      if (y1 > height - radius1 || y1 < radius1) yspeed1 *= -1;
+      if (x2 > width - radius2 || x2 < radius2) xspeed2 *= -1;
+      if (y2 > height - radius2 || y2 < radius2) yspeed2 *= -1;
     }
   </script>
 </body>
