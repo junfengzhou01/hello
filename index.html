@@ -2,12 +2,13 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>cool balls</title>
+  <title>many balls</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
   <style>
     body {
       background: #111;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -19,33 +20,77 @@
       box-shadow: 0 0 30px #39ff14, 0 0 60px #00fff7;
       border-radius: 20px;
       background: #222;
+      margin-bottom: 20px;
+    }
+    #slider-container {
+      color: #39ff14;
+      font-family: sans-serif;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    input[type=range] {
+      accent-color: #39ff14;
     }
   </style>
 </head>
 <body>
+  <div id="slider-container">
+    Number of balls: <span id="ballCount">5</span>
+    <input type="range" id="slider" min="1" max="20" value="5" />
+  </div>
   <canvas id="mycanvas"></canvas>
-  <script type="application/processing" data-processing-target="mycanvas">
-    float x1 = 100, y1 = 100, xspeed1 = 3, yspeed1 = 2, radius1 = 30;
-    float x2 = 300, y2 = 200, xspeed2 = -2, yspeed2 = 3, radius2 = 30;
+  <script type="application/processing" data-processing-target="mycanvas" id="pjs-script">
+    int numBalls = 5;
+    float[] xs, ys, xspeeds, yspeeds, radii;
+    color[] colors;
+    void setupBalls(int n) {
+      xs = new float[n];
+      ys = new float[n];
+      xspeeds = new float[n];
+      yspeeds = new float[n];
+      radii = new float[n];
+      colors = new color[n];
+      for (int i = 0; i < n; i++) {
+        xs[i] = random(30, 370);
+        ys[i] = random(30, 270);
+        xspeeds[i] = random(-3, 3);
+        yspeeds[i] = random(-3, 3);
+        radii[i] = random(20, 35);
+        colors[i] = color(random(50,255), random(50,255), random(50,255), 180);
+      }
+    }
     void setup() {
       size(400, 300);
       smooth();
+      setupBalls(numBalls);
     }
     void draw() {
       background(34,34,34);
-      fill(0, 150, 255, 180);
-      ellipse(x1, y1, radius1*2, radius1*2);
-      fill(255, 100, 100, 180);
-      ellipse(x2, y2, radius2*2, radius2*2);
-      x1 += xspeed1;
-      y1 += yspeed1;
-      x2 += xspeed2;
-      y2 += yspeed2;
-      if (x1 > width - radius1 || x1 < radius1) xspeed1 *= -1;
-      if (y1 > height - radius1 || y1 < radius1) yspeed1 *= -1;
-      if (x2 > width - radius2 || x2 < radius2) xspeed2 *= -1;
-      if (y2 > height - radius2 || y2 < radius2) yspeed2 *= -1;
+      for (int i = 0; i < xs.length; i++) {
+        fill(colors[i]);
+        ellipse(xs[i], ys[i], radii[i]*2, radii[i]*2);
+        xs[i] += xspeeds[i];
+        ys[i] += yspeeds[i];
+        if (xs[i] > width - radii[i] || xs[i] < radii[i]) xspeeds[i] *= -1;
+        if (ys[i] > height - radii[i] || ys[i] < radii[i]) yspeeds[i] *= -1;
+      }
     }
+    void changeBalls(int n) {
+      numBalls = n;
+      setupBalls(n);
+    }
+  </script>
+  <script>
+    // Connect slider to ProcessingJS
+    const slider = document.getElementById('slider');
+    const ballCount = document.getElementById('ballCount');
+    slider.addEventListener('input', function() {
+      ballCount.textContent = slider.value;
+      var canvas = document.getElementById('mycanvas');
+      if (canvas && canvas.processingInstance) {
+        canvas.processingInstance.changeBalls(parseInt(slider.value));
+      }
+    });
   </script>
 </body>
 </html>
