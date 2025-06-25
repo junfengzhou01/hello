@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>many balls</title>
+  <title>slider</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
   <style>
     body {
@@ -39,8 +39,8 @@
     <input type="range" id="slider" min="1" max="20" value="5" />
   </div>
   <canvas id="mycanvas"></canvas>
-  <script type="application/processing" data-processing-target="mycanvas" id="pjs-script">
-    int numBalls = 5;
+  <script id="pjs-script-template" type="text/template">
+    int numBalls = {{NUM_BALLS}};
     float[] xs, ys, xspeeds, yspeeds, radii;
     color[] colors;
     void setupBalls(int n) {
@@ -75,22 +75,29 @@
         if (ys[i] > height - radii[i] || ys[i] < radii[i]) yspeeds[i] *= -1;
       }
     }
-    void changeBalls(int n) {
-      numBalls = n;
-      setupBalls(n);
-    }
   </script>
   <script>
+    // Helper to (re)load ProcessingJS sketch with new ball count
+    function loadProcessingSketch(numBalls) {
+      var canvas = document.getElementById('mycanvas');
+      if (canvas.processingInstance) {
+        canvas.processingInstance.exit();
+      }
+      var template = document.getElementById('pjs-script-template').textContent;
+      var code = template.replace('{{NUM_BALLS}}', numBalls);
+      Processing(canvas, code);
+    }
     // Connect slider to ProcessingJS
     const slider = document.getElementById('slider');
     const ballCount = document.getElementById('ballCount');
     slider.addEventListener('input', function() {
       ballCount.textContent = slider.value;
-      var canvas = document.getElementById('mycanvas');
-      if (canvas && canvas.processingInstance) {
-        canvas.processingInstance.changeBalls(parseInt(slider.value));
-      }
+      loadProcessingSketch(parseInt(slider.value));
     });
+    // Initial load
+    window.onload = function() {
+      loadProcessingSketch(parseInt(slider.value));
+    };
   </script>
 </body>
 </html>
